@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Debug API Connection</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .test { margin: 20px 0; padding: 10px; border: 1px solid #ccc; }
+        .success { background-color: #d4edda; }
+        .error { background-color: #f8d7da; }
+        pre { background: #f8f9fa; padding: 10px; overflow-x: auto; }
+    </style>
+</head>
+<body>
+    <h1>API Connection Debug</h1>
+    
+    <div class="test">
+        <h2>1. Environment Variables</h2>
+        <pre id="env"></pre>
+    </div>
+    
+    <div class="test">
+        <h2>2. Backend Health Check</h2>
+        <div id="health"></div>
+    </div>
+    
+    <div class="test">
+        <h2>3. Login Test</h2>
+        <div id="login"></div>
+    </div>
+
+    <script>
+        // Check environment variables
+        document.getElementById('env').textContent = 
+            `VITE_API_URL: ${import.meta.env.VITE_API_URL || 'NOT SET'}\n` +
+            `Fallback URL: http://localhost:5000`;
+
+        // Test backend health
+        async function testHealth() {
+            try {
+                const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+                console.log('Testing health at:', API_URL);
+                
+                const response = await fetch(`${API_URL}/health`);
+                const data = await response.json();
+                
+                document.getElementById('health').innerHTML = 
+                    `<div class="success">✅ Backend connected<br><pre>${JSON.stringify(data, null, 2)}</pre></div>`;
+            } catch (error) {
+                document.getElementById('health').innerHTML = 
+                    `<div class="error">❌ Health check failed: ${error.message}</div>`;
+            }
+        }
+
+        // Test login
+        async function testLogin() {
+            try {
+                const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+                console.log('Testing login at:', API_URL);
+                
+                const response = await fetch(`${API_URL}/api/auth/login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ 
+                        email: 'test@example.com', 
+                        password: 'password123' 
+                    }),
+                });
+
+                const data = await response.json();
+                
+                if (response.ok && data.success) {
+                    document.getElementById('login').innerHTML = 
+                        `<div class="success">✅ Login successful!<br><pre>${JSON.stringify(data, null, 2)}</pre></div>`;
+                } else {
+                    document.getElementById('login').innerHTML = 
+                        `<div class="error">❌ Login failed: ${data.error || 'Unknown error'}</div>`;
+                }
+            } catch (error) {
+                document.getElementById('login').innerHTML = 
+                    `<div class="error">❌ Login error: ${error.message}</div>`;
+            }
+        }
+
+        // Run tests
+        testHealth();
+        testLogin();
+    </script>
+</body>
+</html>

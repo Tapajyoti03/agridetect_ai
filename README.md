@@ -36,12 +36,34 @@ You can access the deployed application here:
 - Tailwind CSS
 
 ### Backend
-- Node / API-ready backend structure (extensible)
+- Flask (Python) with ML inference models (local only, not in Git)
 
 ### Tools & Deployment
 - Git & GitHub
 - Vercel (deployment)
 - npm
+ 
+---
+ 
+## Setup
+ 
+### Backend
+- Create backend/.env and set GEMINI_API_KEY
+- Create backend/models and place required model files locally
+- Install Python deps: `pip install -r backend/requirements.txt`
+- Start server: `python backend/app.py`
+ 
+### Frontend
+- Install deps: `npm install`
+- Start dev: `npm run dev`
+ 
+### Repo Policy
+- Models and virtual environments are not committed
+- See .gitignore and backend/.gitignore for excluded paths
+ 
+### CI
+- GitHub Actions run frontend lint/tests and backend syntax check
+ 
 
 ---
 
