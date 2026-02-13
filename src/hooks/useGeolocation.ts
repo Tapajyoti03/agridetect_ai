@@ -21,6 +21,7 @@ export const useGeolocation = (options: UseGeolocationOptions = {}) => {
     });
 
     useEffect(() => {
+        let watchId: number | null = null;
         // If location access is disabled, use default location immediately
         if (!enabled) {
             console.log('📍 Real-time location disabled, using default location: New Delhi');
@@ -99,6 +100,18 @@ export const useGeolocation = (options: UseGeolocationOptions = {}) => {
             timeout: 10000,
             maximumAge: 300000, // Cache position for 5 minutes
         });
+
+        // Watch for changes to update weather when user moves
+        watchId = navigator.geolocation.watchPosition(onSuccess, onError, {
+            enableHighAccuracy: true,
+            maximumAge: 300000,
+        });
+
+        return () => {
+            if (watchId !== null) {
+                navigator.geolocation.clearWatch(watchId);
+            }
+        };
     }, [enabled]);
 
     return state;

@@ -61,15 +61,18 @@ export const useWeather = (options: UseWeatherOptions = {}) => {
             return;
         }
 
-        // Check cache first
-        const cachedData = localStorage.getItem('weather_cache');
-        const cachedTime = localStorage.getItem('weather_cache_time');
+        // Check cache first using coordinates-specific key
+        const cacheKey = `weather_cache_${latitude}_${longitude}`;
+        const cacheTimeKey = `weather_cache_time_${latitude}_${longitude}`;
+        const cachedData = localStorage.getItem(cacheKey);
+        const cachedTime = localStorage.getItem(cacheTimeKey);
 
         if (cachedData && cachedTime) {
             const timeDiff = Date.now() - parseInt(cachedTime);
             if (timeDiff < CACHE_DURATION) {
+                const parsed = JSON.parse(cachedData) as WeatherData;
                 setState({
-                    data: JSON.parse(cachedData),
+                    data: parsed,
                     loading: false,
                     error: null,
                 });
@@ -121,9 +124,9 @@ export const useWeather = (options: UseWeatherOptions = {}) => {
                     ),
                 };
 
-                // Cache the data
-                localStorage.setItem('weather_cache', JSON.stringify(weatherData));
-                localStorage.setItem('weather_cache_time', Date.now().toString());
+                // Cache the data per coordinates
+                localStorage.setItem(cacheKey, JSON.stringify(weatherData));
+                localStorage.setItem(cacheTimeKey, Date.now().toString());
 
                 setState({
                     data: weatherData,
